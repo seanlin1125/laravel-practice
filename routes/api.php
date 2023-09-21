@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\Member\MemberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 // // Resource Controller
 // Route::resource('members', MemberController::class);
 
+Route::post('/members', MemberController::class);
+
 Route::get('/members/{memberId}', [MemberController::class, 'show']);
 Route::put('/members/{memberId}', [MemberController::class, 'update']);
 Route::delete('/members/{memberId}', [MemberController::class, 'destroy']);
 Route::get('/members', [MemberController::class, 'index']);
-Route::post('/members', [MemberController::class, 'store']);
+// Route::post('/members', [MemberController::class, 'store']);
 
 
 // 暫時沒用到

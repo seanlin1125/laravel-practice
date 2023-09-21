@@ -1,12 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Member\MemberRequest;
+use App\Http\Resources\Member\MemberResource;
+use App\Services\Member\MemberService;
 use App\Models\Member;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
+    public function __construct(
+        private readonly MemberService $memberService
+    ) {
+    }
+
+    public function __invoke(MemberRequest $request)
+    {
+        $validatedData = $request->validated();
+        $member = $this->memberService->store($validatedData);
+        return MemberResource::make($member);
+    }
     /**
      * Display a listing of the resource.
      */
