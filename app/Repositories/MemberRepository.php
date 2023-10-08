@@ -26,15 +26,9 @@ class MemberRepository
     $member->update($bodyData);
     return $member;
   }
-  public function delete($test)
+  public function delete($id)
   {
-    $member = Member::find($test); //找不到的話會是null
-    // var_dump($member);
-    // if (!$member) {
-    //   return response([
-    //     'message' => '找不到成員資料',
-    //   ], 404);
-    // }
+    $member = Member::find($id); //找不到的話會是null
     if (!$member) {
       return null;
     }
@@ -42,3 +36,9 @@ class MemberRepository
     return $member;
   }
 }
+// var_dump($member);
+// if (!$member) {
+//   return response([
+//     'message' => '找不到成員資料',
+//   ], 404);
+// }

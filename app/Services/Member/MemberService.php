@@ -31,8 +31,8 @@ class MemberService
     return $this->memberRepository->update($bodyData, $id);
   }
 
-  public function delete($test)
+  public function delete($id)
   {
-    return $this->memberRepository->delete($test);
+    return $this->memberRepository->delete($id);
   }
 }

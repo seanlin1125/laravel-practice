@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Member\MemberRequest;
 use App\Http\Resources\Member\MemberResource;
 use App\Services\Member\MemberService;
 
@@ -14,21 +13,9 @@ class DeleteMemberController extends Controller
     ) {
     }
 
-    public function __invoke(string $test) 
+    public function __invoke(string $id) 
     {
-        $member = $this->memberService->delete($test);
-        // try {
-        //     $member = $this->memberService->delete($id);
-        //     // $this->onlineOfflinePathService->destroy($request->input('id'));
-        // } catch (ModelNotFoundException $e) {
-        //     return response()->json([
-        //         'message' => 'setting not found'
-        //     ], 404);
-        // }
-        // echo $member;
-        // echo '----';
-        // var_dump($member);
-        // return response($member);
+        $member = $this->memberService->delete($id);
         if ($member === null) {
             return response([
                 'message' => '找不到成員資料'
@@ -37,3 +24,18 @@ class DeleteMemberController extends Controller
         return MemberResource::make($member);
     }
 }
+
+// use App\Http\Requests\Member\MemberRequest;
+
+// try {
+//     $member = $this->memberService->delete($id);
+//     // $this->onlineOfflinePathService->destroy($request->input('id'));
+// } catch (ModelNotFoundException $e) {
+//     return response()->json([
+//         'message' => 'setting not found'
+//     ], 404);
+// }
+// echo $member;
+// echo '----';
+// var_dump($member);
+// return response($member);
